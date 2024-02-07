@@ -14,7 +14,9 @@ The user should be using a console interface to interact with the application
 ## User Stories
 
 1. As a user, I want to access my address book, so I can add and view contacts.
+    - AddressBook getId should return correct ID ✓
 2. As a user, I want to be able to create a contact with a name, phone and email, so I can add it to the address book.
+    - getName, getPhone and getEmail should return correct name, phone and email ✓
 3. As a user, I want to be able to add a contact to my address book, so I can keep their details. 
 3. As a user, I want to be able to have a contact displayed, so I can view their details. 
 4. As a user, I want to be able to search for a contact by name, so I can find a particular contact. 

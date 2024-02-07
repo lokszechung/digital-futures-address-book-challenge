@@ -8,8 +8,6 @@ public class AddressBook {
         this.id=id;
     }
 
-    public String getId() {
-        return this.id;
-    }
+    public String getId() { return id; }
 
 }
