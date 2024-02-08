@@ -26,10 +26,10 @@ The user should be using a console interface to interact with the application
    - Contact constructor throws IllegalArgumentException when phone is empty ✓
    - Contact constructor throws IllegalArgumentException when phone is whitespace ✓
    - Contact constructor throws IllegalArgumentException when phone is not of valid pattern ✓
-   - Contact constructor throws IllegalArgumentException when email is null 
-   - Contact constructor throws IllegalArgumentException when email is empty 
-   - Contact constructor throws IllegalArgumentException when email is whitespace 
-   - Contact constructor throws IllegalArgumentException when email is not of valid pattern 
+   - Contact constructor throws IllegalArgumentException when email is null ✓
+   - Contact constructor throws IllegalArgumentException when email is empty ✓
+   - Contact constructor throws IllegalArgumentException when email is whitespace ✓
+   - Contact constructor throws IllegalArgumentException when email is not of valid pattern ✓
 4. As a user, I want to be able to add a contact to my address book, so I can keep their details. 
 5. As a user, I want to be able to have a contact displayed, so I can view their details. 
 6. As a user, I want to be able to search for a contact by name, so I can find a particular contact. 
