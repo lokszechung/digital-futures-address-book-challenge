@@ -31,7 +31,11 @@ The user should be using a console interface to interact with the application
    - Contact constructor throws IllegalArgumentException when email is whitespace ✓
    - Contact constructor throws IllegalArgumentException when email is not of valid pattern ✓
 4. As a user, I want to be able to add a contact to my address book, so I can keep their details. 
-5. As a user, I want to be able to have a contact displayed, so I can view their details. 
+   - addContact adds contact when valid contact is passed in ✓
+   - addContact throws IllegalArgumentException when contact is null ✓
+5. As a user, I want to be able to have a contact displayed, so I can view their details.
+   - displayContact prints contact 
+   - displayContact throws IllegalArgumentException when contact is null
 6. As a user, I want to be able to search for a contact by name, so I can find a particular contact. 
 7. As a user, I want to be able to search for a contact by name and have the results displayed, so I can view a contact.
 8. As a user, I want to be able to remove a contact, so I can...
@@ -47,12 +51,19 @@ classDiagram
     class AddressBook {
         -addressBookId String
         -contacts ArrayList<Contact>
-        +addContact(Contact contact): void
+        +addContact(contact Contact): void
+        +validateContact(contact Contact)$ void
     }
     class Contact {
         -name String
         -phone String
         -email String
+        +getName(): String
+        +getPhone(): String
+        +getEmail(): String
+        +validateName(name String)$ void
+        +validatePhone(phone String)$ void
+        +validateEmail(email String)$ void
     }
 ```
 
