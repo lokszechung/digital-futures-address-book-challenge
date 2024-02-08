@@ -1,11 +1,13 @@
 package com.addressbook.app;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class AddressBookTest {
 
@@ -47,6 +49,53 @@ public class AddressBookTest {
 
             assertThrows(IllegalArgumentException.class, () -> {
                 testAddressBook.addContact(null);
+            });
+        }
+
+    }
+
+    @Nested
+    @DisplayName("AddressBook Display Contact Tests")
+
+    class AddressBookHelperPrintContactTests {
+
+        private final PrintStream standardOut = System.out;
+        private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+
+        @BeforeEach
+        public void setUp() {
+            System.setOut(new PrintStream(outputStreamCaptor));
+        }
+
+        @Test
+        @DisplayName("AddressBook displayContact prints expected values")
+        public void testDisplayContact() {
+
+            AddressBook testAddressBook = new AddressBook("ab-1");
+            Contact testContact = mock(Contact.class);
+
+            when(testContact.getName()).thenReturn("Lok Sze Chung");
+            when(testContact.getPhone()).thenReturn("07123456789");
+            when(testContact.getEmail()).thenReturn("loksze@email.com");
+
+            testAddressBook.displayContact(testContact);
+
+            assertEquals("Lok Sze Chung, 07123456789, loksze@email.com", outputStreamCaptor.toString().trim());
+        }
+
+        @AfterEach
+        public void tearDown() {
+            System.setOut(standardOut);
+        }
+
+        @Test
+        @DisplayName("AddressBook displayContact throws IllegalArgumentException when null contact is passed in")
+        public void testDisplayContactThrowsIllegalArgumentExceptionWhenContactISNull() {
+
+            AddressBook testAddressBook = new AddressBook("ab-1");
+
+            assertThrows(IllegalArgumentException.class, () -> {
+                testAddressBook.displayContact(null);
             });
         }
 

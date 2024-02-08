@@ -34,8 +34,9 @@ The user should be using a console interface to interact with the application
    - addContact adds contact when valid contact is passed in ✓
    - addContact throws IllegalArgumentException when contact is null ✓
 5. As a user, I want to be able to have a contact displayed, so I can view their details.
-   - displayContact prints contact 
-   - displayContact throws IllegalArgumentException when contact is null
+   - AddressBookHelper printContact prints a contact ✓
+   - AddressBook displayContact prints a contact ✓
+   - displayContact throws IllegalArgumentException when contact is null ✓
 6. As a user, I want to be able to search for a contact by name, so I can find a particular contact. 
 7. As a user, I want to be able to search for a contact by name and have the results displayed, so I can view a contact.
 8. As a user, I want to be able to remove a contact, so I can...

@@ -20,10 +20,16 @@ public class AddressBook {
             contacts.add(contact);
     }
 
+    public void displayContact(Contact contact) {
+        validateContact(contact);
+        AddressBookHelper.printContact(contact);
+    }
+
     private static void validateContact(Contact contact) {
         if (contact == null) {
             throw new IllegalArgumentException("Contact cannot be null or empty");
         }
     }
+
 
 }
