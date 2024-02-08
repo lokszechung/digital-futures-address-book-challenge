@@ -25,11 +25,29 @@ public class AddressBook {
         AddressBookHelper.printContact(contact);
     }
 
+    public Contact searchContact(String name) throws ContactNotFoundException {
+        validateSearchInput(name);
+        for (Contact contact: contacts) {
+            if (contact.getName().equals(name)) {
+                return contact;
+            }
+        }
+        throw new ContactNotFoundException(name + " does not exists in your contacts");
+    }
+
     private static void validateContact(Contact contact) {
         if (contact == null) {
             throw new IllegalArgumentException("Contact cannot be null or empty");
         }
     }
+
+    private static void validateSearchInput(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Search input cannot be null or empty");
+        }
+    }
+
+
 
 
 }

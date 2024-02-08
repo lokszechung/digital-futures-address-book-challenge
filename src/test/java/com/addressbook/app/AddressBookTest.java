@@ -101,4 +101,58 @@ public class AddressBookTest {
 
     }
 
+    @Nested
+    @DisplayName("AddressBook searchContact Tests")
+
+    class AddressBookSearchContactTests {
+
+        @Test
+        @DisplayName("SearchContact returns contact when a contact with searched name exists")
+        public void testAddressBookSearchContactWhenNameExists() throws ContactNotFoundException {
+            AddressBook testAddressBook = new AddressBook("ab-1");
+            Contact testContact = mock(Contact.class);
+            when(testContact.getName()).thenReturn("Lok Sze");
+
+            testAddressBook.addContact(testContact);
+
+            assertEquals(testContact, testAddressBook.searchContact("Lok Sze"));
+        }
+
+        @Test
+        @DisplayName("SearchContact throws ContactNotFoundException when a contact with searched name does not exist")
+        public void testAddressBookSearchContactThrowsContactNotFoundExceptionWhenNameNotExist() {
+            AddressBook testAddressBook = new AddressBook("ab-1");
+            Contact testContact = mock(Contact.class);
+            when(testContact.getName()).thenReturn("Lok Sze");
+
+            testAddressBook.addContact(testContact);
+
+            assertThrows(ContactNotFoundException.class, () -> {
+                testAddressBook.searchContact("Macks");
+            });
+        }
+
+        @Test
+        @DisplayName("SearchContact throws IllegalArgumentException when input is null")
+        public void testAddressBookSearchContactThrowsIllegalArgumentExceptionWhenNullInput() {
+            AddressBook testAddressBook = new AddressBook("ab-1");
+
+            assertThrows(IllegalArgumentException.class, () -> {
+                testAddressBook.searchContact(null);
+            });
+        }
+
+        @Test
+        @DisplayName("SearchContact throws IllegalArgumentException when input is empty")
+        public void testAddressBookSearchContactThrowsIllegalArgumentExceptionWhenNullEmpty() {
+            AddressBook testAddressBook = new AddressBook("ab-1");
+
+            assertThrows(IllegalArgumentException.class, () -> {
+                testAddressBook.searchContact("");
+            });
+        }
+
+
+    }
+
 }
