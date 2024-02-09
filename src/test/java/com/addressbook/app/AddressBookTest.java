@@ -2,6 +2,7 @@ package com.addressbook.app;
 
 import org.junit.jupiter.api.*;
 
+import javax.sound.midi.SysexMessage;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -48,6 +49,44 @@ public class AddressBookTest {
 
             assertThrows(IllegalArgumentException.class, () -> {
                 testAddressBook.addContact(null);
+            });
+        }
+
+        @Test
+        @DisplayName("AddContact throws DuplicatePhoneException when phone already exists")
+        public void testAddressBookThrowsDuplicatePhoneExceptionWhenDuplicatePhone() {
+            AddressBook testAddressBook = new AddressBook("ab-1");
+
+            Contact testContact1 = mock(Contact.class);
+            when(testContact1.getPhone()).thenReturn("07123456789");
+
+            testAddressBook.addContact(testContact1);
+
+            Contact testContact2 = mock(Contact.class);
+            when(testContact2.getPhone()).thenReturn("07123456789");
+
+            assertThrows(DuplicatePhoneException.class, () -> {
+                testAddressBook.addContact(testContact2);
+            });
+        }
+
+        @Test
+        @DisplayName("AddContact throws DuplicateEmailException when email already exists")
+        public void testAddressBookThrowsDuplicateEmailExceptionWhenDuplicateEmail() {
+            AddressBook testAddressBook = new AddressBook("ab-1");
+
+            Contact testContact1 = mock(Contact.class);
+            when(testContact1.getPhone()).thenReturn("07123456789");
+            when(testContact1.getEmail()).thenReturn("same@email.com");
+
+            testAddressBook.addContact(testContact1);
+
+            Contact testContact2 = mock(Contact.class);
+            when(testContact2.getPhone()).thenReturn("07987654321");
+            when(testContact2.getEmail()).thenReturn("same@email.com");
+
+            assertThrows(DuplicateEmailException.class, () -> {
+                testAddressBook.addContact(testContact2);
             });
         }
 

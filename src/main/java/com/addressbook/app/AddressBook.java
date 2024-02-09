@@ -16,8 +16,9 @@ public class AddressBook {
     public ArrayList<Contact> getContacts() { return contacts; }
 
     public void addContact(Contact contact) {
-            validateContact(contact);
-            contacts.add(contact);
+        validateContact(contact);
+        validateContactDetails(contact, contacts);
+        contacts.add(contact);
     }
 
     public void displayContact(Contact contact) {
@@ -70,6 +71,18 @@ public class AddressBook {
             throw new IllegalArgumentException("Search input cannot be null or empty");
         }
     }
+
+    private static void validateContactDetails(Contact contactToValidate, ArrayList<Contact> contacts) {
+        for (Contact contact: contacts) {
+            if (contact.getPhone().equals(contactToValidate.getPhone())) {
+                throw new DuplicatePhoneException("Phone number already exists on another contact, duplicates not allowed");
+            }
+            if (contact.getEmail().equals(contactToValidate.getEmail())) {
+                throw new DuplicateEmailException("Email address already exists on another contact, duplicates not allowed");
+            }
+        }
+    }
+
 
 
 

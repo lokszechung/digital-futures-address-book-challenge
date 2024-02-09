@@ -59,6 +59,8 @@ The user should be using a console interface to interact with the application
    - EditContact phone calls Contact.setPhone ✓
    - EditContact email calls Contact.setEmail ✓
 9. As an address book, I do not want to allow duplicate phone numbers or emails, so that errors do not occur.
+   - AddContact throws DuplicatePhoneException when phone already exists ✓
+   - AddContact throws DuplicateEmailException when email already exists ✓
 10. As a user, I want to be able to view all contacts in the address book
 11. As a user, I want to be able to interact with my address book using a console interface. 
 12. As a user, I want to be able to search for a contact by name and have the results displayed, so I can view a contact.
