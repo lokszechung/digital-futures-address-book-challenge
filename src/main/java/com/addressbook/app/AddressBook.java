@@ -35,6 +35,16 @@ public class AddressBook {
         throw new ContactNotFoundException(name + " does not exists in your contacts");
     }
 
+    public void removeContact(Contact contactToRemove) {
+        validateContact(contactToRemove);
+        for (Contact contact: contacts) {
+            if (contact.getName().equals(contactToRemove.getName())) {
+                contacts.remove(contact);
+                return;
+            }
+        }
+    }
+
     private static void validateContact(Contact contact) {
         if (contact == null) {
             throw new IllegalArgumentException("Contact cannot be null or empty");

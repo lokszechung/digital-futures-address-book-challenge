@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ContactTest {
 
     @Nested
-    @DisplayName("Address Book Constructor Tests")
+    @DisplayName("Contact Constructor Tests")
 
     class ContactConstructorTests {
 
@@ -204,6 +204,130 @@ public class ContactTest {
                 });
             }
 
+        }
+
+    }
+
+    @Nested
+    @DisplayName("Contact Setter Tests")
+
+    class ContactSetterTests {
+
+        @Nested
+        @DisplayName("Set name tests")
+
+        class SetContactNameTests {
+
+            @Test
+            @DisplayName("SetName throws IllegalArgumentException when name is null")
+            public void testSetNameThrowsIllegalArgumentExceptionWhenNameIsNull() {
+
+                Contact testContact = new Contact("Lok Sze", "07123456789", "loksze@email.com");
+
+                assertThrows(IllegalArgumentException.class, () -> {
+                    testContact.setName(null);
+                });
+            }
+
+            @Test
+            @DisplayName("SetName throws IllegalArgumentException when name is empty")
+            public void testSetNameThrowsIllegalArgumentExceptionWhenNameIsEmpty() {
+
+                Contact testContact = new Contact("Lok Sze", "07123456789", "loksze@email.com");
+
+                assertThrows(IllegalArgumentException.class, () -> {
+                    testContact.setName("");
+                });
+            }
+
+            @Test
+            @DisplayName("SetName throws IllegalArgumentException when name does not meet pattern")
+            public void testSetNameThrowsIllegalArgumentExceptionWhenNameDoesNotMeetPattern() {
+
+                Contact testContact = new Contact("Lok Sze", "07123456789", "loksze@email.com");
+
+                assertThrows(IllegalArgumentException.class, () -> {
+                    testContact.setName("L0K5z3?");
+                });
+            }
+        }
+
+        @Nested
+        @DisplayName("Set phone tests")
+
+        class SetContactPhoneTests {
+
+            @Test
+            @DisplayName("SetPhone throws IllegalArgumentException when phone is null")
+            public void testSetPhoneThrowsIllegalArgumentExceptionWhenPhoneIsNull() {
+
+                Contact testContact = new Contact("Lok Sze", "07123456789", "loksze@email.com");
+
+                assertThrows(IllegalArgumentException.class, () -> {
+                    testContact.setPhone(null);
+                });
+            }
+
+            @Test
+            @DisplayName("SetPhone throws IllegalArgumentException when phone is empty")
+            public void testSetPhoneThrowsIllegalArgumentExceptionWhenPhoneIsEmpty() {
+
+                Contact testContact = new Contact("Lok Sze", "07123456789", "loksze@email.com");
+
+                assertThrows(IllegalArgumentException.class, () -> {
+                    testContact.setPhone("");
+                });
+            }
+
+            @Test
+            @DisplayName("SetPhone throws IllegalArgumentException when phone does not meet pattern")
+            public void testSetPhoneThrowsIllegalArgumentExceptionWhenPhoneDoesNotMeetPattern() {
+
+                Contact testContact = new Contact("Lok Sze", "07123456789", "loksze@email.com");
+
+                assertThrows(IllegalArgumentException.class, () -> {
+                    testContact.setName("12345");
+                });
+            }
+        }
+
+        @Nested
+        @DisplayName("Set email tests")
+
+        class SetContactEmailTests {
+
+            @Test
+            @DisplayName("SetEmail throws IllegalArgumentException when email is null")
+            public void testSetEmailThrowsIllegalArgumentExceptionWhenEmailIsNull() {
+
+                Contact testContact = new Contact("Lok Sze", "07123456789", "loksze@email.com");
+
+                assertThrows(IllegalArgumentException.class, () -> {
+                    testContact.setEmail(null);
+                });
+            }
+
+            @Test
+            @DisplayName("SetEmail throws IllegalArgumentException when email is empty")
+            public void testSetEmailThrowsIllegalArgumentExceptionWhenEmailIsEmpty() {
+
+                Contact testContact = new Contact("Lok Sze", "07123456789", "loksze@email.com");
+
+                assertThrows(IllegalArgumentException.class, () -> {
+                    testContact.setEmail("");
+                });
+            }
+
+            @Test
+            @DisplayName("SetEmail throws IllegalArgumentException when email does not meet pattern")
+            public void testSetEmailThrowsIllegalArgumentExceptionWhenEmailDoesNotMeetPattern() {
+
+                Contact testContact = new Contact("Lok Sze", "07123456789", "loksze@email.com");
+
+                assertThrows(IllegalArgumentException.class, () -> {
+                    testContact.setEmail("123gg45");
+                });
+            }
         }
 
     }

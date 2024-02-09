@@ -155,4 +155,65 @@ public class AddressBookTest {
 
     }
 
+    @Nested
+    @DisplayName("AddressBook removeContact Tests")
+
+    class AddressBookRemoveContactTests {
+
+        @Test
+        @DisplayName("RemoveContact removes contact from the AddressBook")
+        public void testRemoveContactRemoveContact() {
+            AddressBook testAddressBook = new AddressBook("ab-1");
+            Contact testContact = mock(Contact.class);
+            when(testContact.getName()).thenReturn("Lok Sze");
+
+            testAddressBook.addContact(testContact);
+            testAddressBook.removeContact(testContact);
+
+            assertEquals(0, testAddressBook.getContacts().size());
+        }
+
+        @Test
+        @DisplayName("RemoveContact throws IllegalArgumentException when contact is null")
+        public void testRemoveContactThrowsIllegalArgumentExceptionWhenNullContact() {
+            AddressBook testAddressBook = new AddressBook("ab-1");
+
+            assertThrows(IllegalArgumentException.class, () -> {
+                testAddressBook.removeContact(null);
+            });
+        }
+
+    }
+
+    @Nested
+    @DisplayName("AddressBook editContact Tests")
+
+    class AddressBookEditContactTests {
+
+        @Test
+        @DisplayName("EditContact edit name returns")
+        public void testRemoveContactRemoveContact() {
+            AddressBook testAddressBook = new AddressBook("ab-1");
+            Contact testContact = mock(Contact.class);
+            when(testContact.getName()).thenReturn("Lok Sze");
+
+            testAddressBook.addContact(testContact);
+            testAddressBook.removeContact(testContact);
+
+            assertEquals(0, testAddressBook.getContacts().size());
+        }
+
+        @Test
+        @DisplayName("RemoveContact throws IllegalArgumentException when contact is null")
+        public void testRemoveContactThrowsIllegalArgumentExceptionWhenNullContact() {
+            AddressBook testAddressBook = new AddressBook("ab-1");
+
+            assertThrows(IllegalArgumentException.class, () -> {
+                testAddressBook.removeContact(null);
+            });
+        }
+
+    }
+
+
 }

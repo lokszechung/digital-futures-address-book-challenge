@@ -40,14 +40,25 @@ The user should be using a console interface to interact with the application
 6. As a user, I want to be able to search for a contact by name, so I can find a particular contact.
    - Searching for a name that exists returns that contact ✓
    - Searching for a name that doesn't exist throws a UserNotFoundException ✓
-   - SearchContact throws IllegalArgumentException when input is null ✓
-   - SearchContact throws IllegalArgumentException when input is empty ✓
-7. As a user, I want to be able to search for a contact by name and have the results displayed, so I can view a contact.
-8. As a user, I want to be able to remove a contact, so I can...
-9. As a user, I want to be able to edit a contact's details, so I can update any changes. 
-10. As an address book, I do not want to allow duplicate phone numbers or emails, so that errors do not occur.
-11. As a user, I want to be able to view all contacts in the address book
-12. As a user, I want to be able to interact with my address book using a console interface. 
+   - searchContact throws IllegalArgumentException when input is null ✓
+   - searchContact throws IllegalArgumentException when input is empty ✓
+7. As a user, I want to be able to remove a contact, so I can...
+   - removeContact removes contact from the AddressBook ✓
+   - removeContact throws IllegalArgumentException when contact is null ✓
+8. As a user, I want to be able to edit a contact's details, so I can update any changes. 
+   - Contact setName throws IllegalArgumentException when name is null ✓
+   - Contact setName throws IllegalArgumentException when name is empty ✓
+   - Contact setName throws IllegalArgumentException when name is not of valid pattern ✓
+   - Contact setPhone throws IllegalArgumentException when phone is null ✓
+   - Contact setPhone throws IllegalArgumentException when phone is empty ✓
+   - Contact setPhone throws IllegalArgumentException when phone is not of valid pattern ✓
+   - Contact setEmail throws IllegalArgumentException when email is null ✓
+   - Contact setEmail throws IllegalArgumentException when email is empty ✓
+   - Contact setEmail throws IllegalArgumentException when email is not of valid pattern ✓
+9. As an address book, I do not want to allow duplicate phone numbers or emails, so that errors do not occur.
+10. As a user, I want to be able to view all contacts in the address book
+11. As a user, I want to be able to interact with my address book using a console interface. 
+12. As a user, I want to be able to search for a contact by name and have the results displayed, so I can view a contact.
 
 ## Class Diagrams
 
@@ -56,19 +67,29 @@ classDiagram
     class AddressBook {
         -addressBookId String
         -contacts ArrayList<Contact>
-        +addContact(contact Contact): void
-        +validateContact(contact Contact)$ void
+        +addContact(contact Contact) void
+        +displayContact(contact Contact) void
+        +displayAllContacts(contacts Contact[]) void
+        +searchContact(name String) Contact
+        +editContact(contact Contact, fieldToEdit String, value String) void
+        -validateContact(contact Contact)$ void
     }
     class Contact {
         -name String
         -phone String
         -email String
-        +getName(): String
-        +getPhone(): String
-        +getEmail(): String
-        +validateName(name String)$ void
-        +validatePhone(phone String)$ void
-        +validateEmail(email String)$ void
+        +getName() String
+        +getPhone() String
+        +getEmail() String
+        +setName(name String) void
+        +setPhone(phone String) void
+        +setEmail(email String) void
+        -validateName(name String)$ void
+        -validatePhone(phone String)$ void
+        -validateEmail(email String)$ void
+    }
+    class AddressBookHelper {
+        +printContact(contact Contact)$ void
     }
 ```
 

@@ -21,6 +21,21 @@ public class Contact {
 
     public String getEmail() { return email; }
 
+    public void setName(String name) {
+        validateName(name);
+        this.name = name;
+    }
+
+    public void setPhone(String phone) {
+        validatePhone(phone);
+        this.phone = phone;
+    }
+
+    public void setEmail(String email) {
+        validateEmail(email);
+        this.email = email;
+    }
+
     private static void validateName(String name) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Contact name cannot be null or empty");
