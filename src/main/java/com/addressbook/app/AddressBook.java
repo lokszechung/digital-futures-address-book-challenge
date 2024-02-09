@@ -45,6 +45,20 @@ public class AddressBook {
         }
     }
 
+    public void editContact(Contact contact, String fieldToEdit, String value) {
+        switch (fieldToEdit) {
+            case "name":
+                contact.setName(value);
+                break;
+            case "phone":
+                contact.setPhone(value);
+                break;
+            case "email":
+                contact.setEmail(value);
+                break;
+        }
+    }
+
     private static void validateContact(Contact contact) {
         if (contact == null) {
             throw new IllegalArgumentException("Contact cannot be null or empty");

@@ -6,8 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class AddressBookTest {
 
@@ -191,26 +190,42 @@ public class AddressBookTest {
     class AddressBookEditContactTests {
 
         @Test
-        @DisplayName("EditContact edit name returns")
-        public void testRemoveContactRemoveContact() {
+        @DisplayName("EditContact edit name calls Contact.setName")
+        public void testEditContactNameCallsSetName() {
             AddressBook testAddressBook = new AddressBook("ab-1");
             Contact testContact = mock(Contact.class);
-            when(testContact.getName()).thenReturn("Lok Sze");
 
             testAddressBook.addContact(testContact);
-            testAddressBook.removeContact(testContact);
+            String newName = "Bobby Bagelz";
+            testAddressBook.editContact(testContact, "name", newName);
 
-            assertEquals(0, testAddressBook.getContacts().size());
+            verify(testContact).setName(newName);
         }
 
         @Test
-        @DisplayName("RemoveContact throws IllegalArgumentException when contact is null")
-        public void testRemoveContactThrowsIllegalArgumentExceptionWhenNullContact() {
+        @DisplayName("EditContact edit phone calls Contact.setPhone")
+        public void testEditContactPhoneCallsSetPhone() {
             AddressBook testAddressBook = new AddressBook("ab-1");
+            Contact testContact = mock(Contact.class);
 
-            assertThrows(IllegalArgumentException.class, () -> {
-                testAddressBook.removeContact(null);
-            });
+            testAddressBook.addContact(testContact);
+            String newPhone = "07123123123";
+            testAddressBook.editContact(testContact, "phone", newPhone);
+
+            verify(testContact).setPhone(newPhone);
+        }
+
+        @Test
+        @DisplayName("EditContact edit email calls Contact.setEmail")
+        public void testEditContactEmailCallsSetEmail() {
+            AddressBook testAddressBook = new AddressBook("ab-1");
+            Contact testContact = mock(Contact.class);
+
+            testAddressBook.addContact(testContact);
+            String newEmail = "new@email.com";
+            testAddressBook.editContact(testContact, "email", newEmail);
+
+            verify(testContact).setEmail(newEmail);
         }
 
     }
