@@ -26,6 +26,13 @@ public class AddressBook {
         AddressBookHelper.printContact(contact);
     }
 
+    public void displayAllContacts() {
+        if (contacts.size() == 0) { System.out.println("No contacts in address book"); }
+        for (Contact contact: contacts) {
+            AddressBookHelper.printContact(contact);
+        }
+    }
+
     public Contact searchContact(String name) throws ContactNotFoundException {
         validateSearchInput(name);
         for (Contact contact: contacts) {

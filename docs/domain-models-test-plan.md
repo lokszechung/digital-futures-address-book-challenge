@@ -62,6 +62,8 @@ The user should be using a console interface to interact with the application
    - AddContact throws DuplicatePhoneException when phone already exists ✓
    - AddContact throws DuplicateEmailException when email already exists ✓
 10. As a user, I want to be able to view all contacts in the address book
+   - AddressBook displayAllContact prints expected values ✓
+   - AddressBook displayAllContact prints message if no contacts ✓
 11. As a user, I want to be able to interact with my address book using a console interface. 
 12. As a user, I want to be able to search for a contact by name and have the results displayed, so I can view a contact.
 
@@ -78,6 +80,8 @@ classDiagram
         +searchContact(name String) Contact
         +editContact(contact Contact, fieldToEdit String, value String) void
         -validateContact(contact Contact)$ void
+        -validateContactDetails(contact Contact, contacts Contact[])$ void
+        -validateSearchInput(name String)$ void
     }
     class Contact {
         -name String
@@ -96,5 +100,14 @@ classDiagram
     class AddressBookHelper {
         +printContact(contact Contact)$ void
     }
+    class ContactNotFoundException~Exception~ {
+        
+    }
+   class DuplicateEmailException~IllegalArgumentException~ {
+
+   }
+   class DuplicatePhoneException~IllegalArgumentException~ {
+
+   }
 ```
 

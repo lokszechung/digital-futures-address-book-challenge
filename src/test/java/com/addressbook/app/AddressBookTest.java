@@ -95,7 +95,7 @@ public class AddressBookTest {
     @Nested
     @DisplayName("AddressBook Display Contact Tests")
 
-    class AddressBookHelperPrintContactTests {
+    class AddressBookPrintContactTests {
 
         private final PrintStream standardOut = System.out;
         private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
@@ -266,6 +266,65 @@ public class AddressBookTest {
 
             verify(testContact).setEmail(newEmail);
         }
+
+    }
+
+    @Nested
+    @DisplayName("AddressBook Display All Contact Tests")
+
+    class AddressBookDisplayAllContactTests {
+
+        private final PrintStream standardOut = System.out;
+        private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+
+        @BeforeEach
+        public void setUp() {
+            System.setOut(new PrintStream(outputStreamCaptor));
+        }
+
+        @Test
+        @DisplayName("AddressBook displayAllContact prints expected values")
+        public void testDisplayAllContact() {
+
+            AddressBook testAddressBook = new AddressBook("ab-1");
+            Contact testContact1 = mock(Contact.class);
+
+            when(testContact1.getName()).thenReturn("Lok Sze Chung");
+            when(testContact1.getPhone()).thenReturn("07123456789");
+            when(testContact1.getEmail()).thenReturn("loksze@email.com");
+
+            Contact testContact2 = mock(Contact.class);
+
+            when(testContact2.getName()).thenReturn("Not Sze Chung");
+            when(testContact2.getPhone()).thenReturn("07987654321");
+            when(testContact2.getEmail()).thenReturn("notsze@email.com");
+
+            testAddressBook.addContact(testContact1);
+            testAddressBook.addContact(testContact2);
+
+            testAddressBook.displayAllContacts();
+
+            String expectedOutput = "Lok Sze Chung, 07123456789, loksze@email.com\nNot Sze Chung, 07987654321, notsze@email.com";
+
+            assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
+        }
+
+        @Test
+        @DisplayName("AddressBook displayAllContact prints message when no contacts")
+        public void testDisplayAllContactWithNoContacts() {
+
+            AddressBook testAddressBook = new AddressBook("ab-1");
+
+            testAddressBook.displayAllContacts();
+
+            assertEquals("No contacts in address book", outputStreamCaptor.toString().trim());
+        }
+
+        @AfterEach
+        public void tearDown() {
+            System.setOut(standardOut);
+        }
+
 
     }
 
