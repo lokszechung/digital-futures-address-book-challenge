@@ -62,10 +62,15 @@ The user should be using a console interface to interact with the application
    - AddContact throws DuplicatePhoneException when phone already exists ✓
    - AddContact throws DuplicateEmailException when email already exists ✓
 10. As a user, I want to be able to view all contacts in the address book.
-   - AddressBook displayAllContact prints expected values ✓
-   - AddressBook displayAllContact prints message if no contacts ✓
+    - AddressBook displayAllContact prints expected values ✓
+    - AddressBook displayAllContact prints message if no contacts ✓
 11. As a user, I want to be able to interact with my address book using a console interface. 
 12. As a user, I want to be able to search for a contact by name and have the results displayed, so I can view a contact.
+
+13. As a user, I want to be able to delete all contacts at once so that I can easily clear the address book when needed.
+    - AddressBook deleteAllContacts deletes all contacts from addressBook ✓
+    - DeleteAllContacts works when contacts array is empty ✓
+14. As a user, I want to be asked to confirm my choice before deleting all contacts, so that I don't unintentionally delete them all. 
 
 ## Class Diagrams
 
@@ -79,6 +84,8 @@ classDiagram
         +displayAllContacts(contacts Contact[]) void
         +searchContact(name String) Contact
         +editContact(contact Contact, fieldToEdit String, value String) void
+        +removeContact(contact Contact) void
+        +deleteAllContacts() void
         -validateContact(contact Contact)$ void
         -validateContactDetails(contact Contact, contacts Contact[])$ void
         -validateSearchInput(name String)$ void

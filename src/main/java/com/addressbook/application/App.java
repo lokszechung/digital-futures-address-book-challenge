@@ -20,7 +20,7 @@ public class App {
     }
 
     public static void mainMenu() {
-        System.out.println("What would you like to do:\n1. Search for a contact\n2. See all contacts\n3. Add a new contact\n4. Exit address book");
+        System.out.println("What would you like to do:\n1. Search for a contact\n2. See all contacts\n3. Add a new contact\n4. Delete all contacts\n5. Exit address book");
 
         String mainOption = scanner.nextLine();
         processMainMenuInput(mainOption);
@@ -41,10 +41,14 @@ public class App {
                 addContact();
                 break;
             case "4":
+                System.out.println("\nDelete all contacts\n");
+                deleteAllContacts();
+                break;
+            case "5":
                 System.out.println("Closing address book. Goodbye!");
                 System.exit(0);
             default:
-                System.out.println("Invalid input. Please choose 1, 2, 3 or 4");
+                System.out.println("Invalid input. Please choose 1, 2, 3, 4 or 5");
                 mainMenu();
         }
     }
@@ -185,8 +189,24 @@ public class App {
         }
         catch (Exception e) {
             System.out.println("WARNING: Contact not removed. " + e.getMessage());
+            contactMenu();
         }
     }
+
+    public static void deleteAllContacts() {
+        try {
+            addressBook.deleteAllContacts();
+            System.out.println("SUCCESS: All contacts deleted\n");
+            mainMenu();
+        }
+        catch (Exception e) {
+            System.out.println("WARNING: Not Deleted. " + e.getMessage());
+            mainMenu();
+        }
+
+    }
+
+
 
     public static void editField(String field) {
         System.out.println("Enter new " + field + ":");

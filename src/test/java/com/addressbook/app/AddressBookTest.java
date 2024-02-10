@@ -328,5 +328,47 @@ public class AddressBookTest {
 
     }
 
+    @Nested
+    @DisplayName("Delete All Contacts Tests")
+
+    class AddressBookDeleteAllContactTests {
+
+        @Test
+        @DisplayName("DeleteAllContacts deletes all contacts from addressBook")
+        public void testAddressBookDeleteAllContactDeletesAll() {
+            AddressBook testAddressBook = new AddressBook("ab-1");
+            Contact testContact1 = mock(Contact.class);
+
+            when(testContact1.getPhone()).thenReturn("07987654321");
+            when(testContact1.getEmail()).thenReturn("test1@email.com");
+
+            Contact testContact2 = mock(Contact.class);
+
+            when(testContact2.getPhone()).thenReturn("07987654324");
+            when(testContact2.getEmail()).thenReturn("test2@email.com");
+
+            testAddressBook.addContact(testContact1);
+            testAddressBook.addContact(testContact2);
+
+            assertEquals(2, testAddressBook.getContacts().size());
+
+            testAddressBook.deleteAllContacts();
+
+            assertEquals(0, testAddressBook.getContacts().size());
+        }
+
+        @Test
+        @DisplayName("DeleteAllContacts works when contacts array is empty")
+        public void testAddressBookDeleteAllContactNoErrorWhenEmpty() {
+            AddressBook testAddressBook = new AddressBook("ab-1");
+
+            testAddressBook.deleteAllContacts();
+
+            assertEquals(0, testAddressBook.getContacts().size());
+        }
+
+    }
+
+
 
 }

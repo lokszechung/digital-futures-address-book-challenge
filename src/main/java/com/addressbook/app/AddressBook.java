@@ -17,7 +17,7 @@ public class AddressBook {
 
     public void addContact(Contact contact) {
         validateContact(contact);
-        validateContactDetails(contact, contacts);
+        checkForDuplicate(contact, contacts);
         contacts.add(contact);
     }
 
@@ -67,6 +67,10 @@ public class AddressBook {
         }
     }
 
+    public void deleteAllContacts() {
+        contacts.clear();
+    }
+
     private static void validateContact(Contact contact) {
         if (contact == null) {
             throw new IllegalArgumentException("Contact cannot be null or empty");
@@ -79,7 +83,7 @@ public class AddressBook {
         }
     }
 
-    private static void validateContactDetails(Contact contactToValidate, ArrayList<Contact> contacts) {
+    private static void checkForDuplicate(Contact contactToValidate, ArrayList<Contact> contacts) {
         for (Contact contact: contacts) {
             if (contact.getPhone().equals(contactToValidate.getPhone())) {
                 throw new DuplicatePhoneException("Phone number already exists on another contact, duplicates not allowed");
@@ -89,9 +93,5 @@ public class AddressBook {
             }
         }
     }
-
-
-
-
 
 }
