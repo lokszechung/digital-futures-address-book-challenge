@@ -61,7 +61,7 @@ The user should be using a console interface to interact with the application
 9. As an address book, I do not want to allow duplicate phone numbers or emails, so that errors do not occur.
    - AddContact throws DuplicatePhoneException when phone already exists ✓
    - AddContact throws DuplicateEmailException when email already exists ✓
-10. As a user, I want to be able to view all contacts in the address book
+10. As a user, I want to be able to view all contacts in the address book.
    - AddressBook displayAllContact prints expected values ✓
    - AddressBook displayAllContact prints message if no contacts ✓
 11. As a user, I want to be able to interact with my address book using a console interface. 
