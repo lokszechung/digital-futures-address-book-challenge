@@ -71,7 +71,7 @@ public class App {
                 removeContact();
                 break;
             case "3":
-                System.out.println("Back to main menu");
+                System.out.println("Back to main menu\n");
                 mainMenu();
                 break;
             default:
@@ -193,17 +193,27 @@ public class App {
         }
     }
 
-    public static void deleteAllContacts() {
-        try {
-            addressBook.deleteAllContacts();
-            System.out.println("SUCCESS: All contacts deleted\n");
-            mainMenu();
-        }
-        catch (Exception e) {
-            System.out.println("WARNING: Not Deleted. " + e.getMessage());
-            mainMenu();
-        }
+    public static boolean confirmDeleteAll() {
+        System.out.println("Are you sure you want to delete all contacts? (y/n)");
+        String confirmation = scanner.nextLine();
+        return confirmation.equals("y") ? true : false;
 
+    }
+
+    public static void deleteAllContacts() {
+//        boolean confirmed = confirmDeleteAll();
+        if (confirmDeleteAll()) {
+            try {
+                addressBook.deleteAllContacts();
+                System.out.println("SUCCESS: All contacts deleted\n");
+                mainMenu();
+            }
+            catch (Exception e) {
+                System.out.println("WARNING: Not Deleted. " + e.getMessage());
+                mainMenu();
+            }
+        }
+        mainMenu();
     }
 
 
