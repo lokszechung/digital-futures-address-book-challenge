@@ -362,6 +362,8 @@ public class AddressBookTest {
         public void testAddressBookDeleteAllContactNoErrorWhenEmpty() {
             AddressBook testAddressBook = new AddressBook("ab-1");
 
+            assertEquals(0, testAddressBook.getContacts().size());
+
             testAddressBook.deleteAllContacts();
 
             assertEquals(0, testAddressBook.getContacts().size());

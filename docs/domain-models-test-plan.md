@@ -1,23 +1,12 @@
 # Domain Models, Class Diagrams and Test Plan
 
-## Requirements
+## User Stories and Test Plan
 
-The user should be able to add a contact to the address book
-A contact should have at least a name, phone number and email address
-The user should be able to search for a contact by name and have the results displayed
-The user should be able to remove a contact from the address book
-The user should be able to edit a contact's details
-Duplicate phone numbers or email addresses should not be allowed, i.e. no two contacts should have the same phone number or email address
-The user should be able to view all contacts in the address book
-The user should be using a console interface to interact with the application
-
-## User Stories
-
-1. As a user, I want to access my address book, so I can add and view contacts.
+1. **As a user, I want to access my address book, so I can add and view contacts.**
    - AddressBook getId should return correct ID ✓
-2. As a user, I want to be able to create a contact with a name, phone and email, so I can add it to the address book.
+2. **As a user, I want to be able to create a contact with a name, phone and email, so I can add it to the address book.**
    - getName, getPhone and getEmail should return correct name, phone and email ✓
-3. As a user, I want to be able to create a contact if I give valid values, so that there are no errors.
+3. **As a user, I want to be able to create a contact if I give valid values, so that there are no errors.**
    - Contact constructor throws IllegalArgumentException when name is null ✓
    - Contact constructor throws IllegalArgumentException when name is empty ✓
    - Contact constructor throws IllegalArgumentException when name is whitespace ✓
@@ -30,22 +19,22 @@ The user should be using a console interface to interact with the application
    - Contact constructor throws IllegalArgumentException when email is empty ✓
    - Contact constructor throws IllegalArgumentException when email is whitespace ✓
    - Contact constructor throws IllegalArgumentException when email is not of valid pattern ✓
-4. As a user, I want to be able to add a contact to my address book, so I can keep their details. 
+4. **As a user, I want to be able to add a contact to my address book, so I can keep their details.**
    - addContact adds contact when valid contact is passed in ✓
    - addContact throws IllegalArgumentException when contact is null ✓
-5. As a user, I want to be able to have a contact displayed, so I can view their details.
+5. **As a user, I want to be able to have a contact displayed, so I can view their details.**
    - AddressBookHelper printContact prints a contact ✓
    - AddressBook displayContact prints a contact ✓
    - displayContact throws IllegalArgumentException when contact is null ✓
-6. As a user, I want to be able to search for a contact by name, so I can find a particular contact.
+6. **As a user, I want to be able to search for a contact by name, so I can find a particular contact.**
    - Searching for a name that exists returns that contact ✓
    - Searching for a name that doesn't exist throws a UserNotFoundException ✓
    - searchContact throws IllegalArgumentException when input is null ✓
    - searchContact throws IllegalArgumentException when input is empty ✓
-7. As a user, I want to be able to remove a contact, so I can...
+7. **As a user, I want to be able to remove a contact, so I can keep contact information up to date.**
    - removeContact removes contact from the AddressBook ✓
    - removeContact throws IllegalArgumentException when contact is null ✓
-8. As a user, I want to be able to edit a contact's details, so I can update any changes. 
+8. **As a user, I want to be able to edit a contact's details, so I can update any changes.** 
    - Contact setName throws IllegalArgumentException when name is null ✓
    - Contact setName throws IllegalArgumentException when name is empty ✓
    - Contact setName throws IllegalArgumentException when name is not of valid pattern ✓
@@ -58,19 +47,21 @@ The user should be using a console interface to interact with the application
    - EditContact name calls Contact.setName ✓
    - EditContact phone calls Contact.setPhone ✓
    - EditContact email calls Contact.setEmail ✓
-9. As an address book, I do not want to allow duplicate phone numbers or emails, so that errors do not occur.
+9. **As an address book, I do not want to allow duplicate phone numbers or emails, so that errors do not occur.**
    - AddContact throws DuplicatePhoneException when phone already exists ✓
    - AddContact throws DuplicateEmailException when email already exists ✓
-10. As a user, I want to be able to view all contacts in the address book.
+10. **As a user, I want to be able to view all contacts in the address book.**
     - AddressBook displayAllContact prints expected values ✓
     - AddressBook displayAllContact prints message if no contacts ✓
-11. As a user, I want to be able to interact with my address book using a console interface. 
-12. As a user, I want to be able to search for a contact by name and have the results displayed, so I can view a contact.
+11. **As a user, I want to be able to interact with my address book using a console interface.**
+12. **As a user, I want to be able to search for a contact by name and have the results displayed, so I can view a contact.**
 
-13. As a user, I want to be able to delete all contacts at once so that I can easily clear the address book when needed.
+#### Additional Features: User Stories and Test Plan (Gen AI used)
+
+13. **As a user, I want to be able to delete all contacts at once so that I can easily clear the address book when needed.**
     - AddressBook deleteAllContacts deletes all contacts from addressBook ✓
     - DeleteAllContacts works when contacts array is empty ✓
-14. As a user, I want to be asked to confirm my choice before deleting all contacts, so that I don't unintentionally delete them all. 
+14. **As a user, I want to be asked to confirm my choice before deleting all contacts, so that I don't unintentionally delete them all.** 
 
 ## Class Diagrams
 
@@ -116,5 +107,14 @@ classDiagram
    class DuplicatePhoneException~IllegalArgumentException~ {
 
    }
+   class IllegalArgumentException {
+       
+   }
+   class Exception {
+       
+   }
+   DuplicateEmailException <|-- IllegalArgumentException
+   DuplicatePhoneException <|-- IllegalArgumentException
+   ContactNotFoundException <|-- Exception
 ```
 

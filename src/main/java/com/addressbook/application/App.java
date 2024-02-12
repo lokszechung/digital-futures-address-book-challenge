@@ -81,19 +81,19 @@ public class App {
     }
 
     public static void processContinueAddInput(String input) {
-        if (input.equals("y")) {
+        if (input.equalsIgnoreCase("y")) {
             addContact();
         }
-        if (!input.equals("y")) {
+        if (!input.equalsIgnoreCase("y")) {
             mainMenu();
         }
     }
 
     public static void processContinueSearch(String input) {
-        if (input.equals("y")) {
+        if (input.equalsIgnoreCase("y")) {
             searchContact();
         }
-        if (!input.equals("y")) {
+        if (!input.equalsIgnoreCase("y")) {
             mainMenu();
         }
     }
@@ -196,7 +196,7 @@ public class App {
     public static boolean confirmDeleteAll() {
         System.out.println("Are you sure you want to delete all contacts? (y/n)");
         String confirmation = scanner.nextLine();
-        return confirmation.equals("y") ? true : false;
+        return confirmation.equalsIgnoreCase("y") ? true : false;
 
     }
 
@@ -237,10 +237,10 @@ public class App {
     }
 
     public static void processContinueEditInput(String input, String field) {
-        if (input.equals("y")) {
+        if (input.equalsIgnoreCase("y")) {
             editField(field);
         }
-        if (!input.equals("y")) {
+        if (!input.equalsIgnoreCase("y")) {
             contactMenu();
         }
     }
